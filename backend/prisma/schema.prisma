@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  businessName String?
+  phone        String?
+  address      String?
+  currency     String    @default("USD")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  products     Product[]
+  sales        Sale[]
+  expenses     Expense[]
+}
+
+model Product {
+  id            String     @id @default(cuid())
+  userId        String
+  name          String
+  sku           String
+  costPrice     Float
+  sellingPrice  Float
+  stockQuantity Int        @default(0)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  user          User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  saleItems     SaleItem[]
+
+  @@unique([userId, sku])
+  @@index([userId])
+}
+
+model Sale {
+  id             String     @id @default(cuid())
+  userId         String
+  saleDate       DateTime   @default(now())
+  discountType   String     @default("NONE")
+  discountValue  Float      @default(0)
+  subtotal       Float
+  discountAmount Float      @default(0)
+  total          Float
+  profit         Float
+  notes          String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  user           User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items          SaleItem[]
+
+  @@index([userId, saleDate])
+}
+
+model SaleItem {
+  id           String   @id @default(cuid())
+  saleId       String
+  productId    String?
+  productName  String
+  sku          String?
+  quantity     Int
+  costPrice    Float
+  sellingPrice Float
+  lineTotal    Float
+  lineProfit   Float
+
+  sale         Sale     @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  product      Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@index([saleId])
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  amount      Float
+  category    String
+  expenseDate DateTime @default(now())
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expenseDate])
+}

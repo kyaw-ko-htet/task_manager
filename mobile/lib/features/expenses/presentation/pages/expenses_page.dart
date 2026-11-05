@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/features/expenses/presentation/bloc/expense_bloc.dart';
+import 'package:mobile/core/utils/formatters.dart';
+
+class ExpensesPage extends StatefulWidget {
+  const ExpensesPage({super.key});
+
+  @override
+  State<ExpensesPage> createState() => _ExpensesPageState();
+}
+
+class _ExpensesPageState extends State<ExpensesPage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ExpenseBloc>().add(ExpenseLoadRequested());
+  }
+
+  void _showAddDialog() {
+    final title = TextEditingController();
+    final amount = TextEditingController();
+    final category = TextEditingController(text: 'OTHER');
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Add Expense'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(controller: title, decoration: const InputDecoration(labelText: 'Title')),
+            TextField(controller: amount, decoration: const InputDecoration(labelText: 'Amount'), keyboardType: TextInputType.number),
+            TextField(controller: category, decoration: const InputDecoration(labelText: 'Category')),
+          ],
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          ElevatedButton(
+            onPressed: () {
+              context.read<ExpenseBloc>().add(ExpenseCreateRequested({
+                    'title': title.text.trim(),
+                    'amount': double.parse(amount.text),
+                    'category': category.text.trim(),
+                  }));
+              Navigator.pop(context);
+            },
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Expenses')),
+      floatingActionButton: FloatingActionButton(onPressed: _showAddDialog, child: const Icon(Icons.add)),
+      body: BlocConsumer<ExpenseBloc, ExpenseState>(
+        listener: (context, state) {
+          if (state is ExpenseOperationSuccess) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+          }
+          if (state is ExpenseError) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+          }
+        },
+        builder: (context, state) {
+          if (state is ExpenseLoading || state is ExpenseInitial) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (state is ExpenseLoaded) {
+            if (state.expenses.isEmpty) return const Center(child: Text('No expenses'));
+            return ListView.builder(
+              itemCount: state.expenses.length,
+              itemBuilder: (context, i) {
+                final e = state.expenses[i];
+                return ListTile(
+                  title: Text(e.title),
+                  subtitle: Text('${e.category} | ${e.expenseDate.toLocal()}'),
+                  trailing: Text(Formatters.money(e.amount)),
+                  onLongPress: () => context.read<ExpenseBloc>().add(ExpenseDeleteRequested(e.id)),
+                );
+              },
+            );
+          }
+          return const SizedBox.shrink();
+        },
+      ),
+    );
+  }
+}
