@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp.router(
         title: 'Daily Sales',
-        theme: AppTheme.light(),
+        theme: AppTheme.dark(),
         routerConfig: _router,
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile/features/sales/presentation/bloc/sale_bloc.dart';
 import 'package:mobile/core/utils/formatters.dart';
 
@@ -21,7 +22,10 @@ class _SaleDetailPageState extends State<SaleDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Sale Detail')),
+      appBar: AppBar(
+        leading: BackButton(onPressed: () => context.go('/sales')),
+        title: const Text('Sale Detail'),
+      ),
       body: BlocBuilder<SaleBloc, SaleState>(
         builder: (context, state) {
           if (state is SaleLoading) return const Center(child: CircularProgressIndicator());

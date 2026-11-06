@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile/features/products/presentation/bloc/product_bloc.dart';
+import 'package:mobile/core/theme/app_theme.dart';
 import 'package:mobile/core/utils/formatters.dart';
 
 class ProductsPage extends StatefulWidget {
@@ -41,9 +42,21 @@ class _ProductsPageState extends State<ProductsPage> {
           }
           if (state is ProductLoaded) {
             if (state.products.isEmpty) {
-              return const Center(child: Text('No products'));
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Icon(Icons.inventory_2_outlined, size: 48, color: AppTheme.colorOnSurfaceVariant),
+                    SizedBox(height: 12),
+                    Text('No products', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                    SizedBox(height: 4),
+                    Text('Tap + to add your first product', style: TextStyle(fontSize: 14, color: AppTheme.colorOnSurfaceVariant)),
+                  ],
+                ),
+              );
             }
             return ListView.builder(
+              padding: const EdgeInsets.all(16),
               itemCount: state.products.length,
               itemBuilder: (context, i) {
                 final p = state.products[i];

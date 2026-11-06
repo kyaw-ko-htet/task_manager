@@ -12,7 +12,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final TokenStorage tokenStorage;
 
   AuthBloc({required this.repository, required this.tokenStorage})
-      : super(AuthInitial()) {
+    : super(AuthInitial()) {
     on<AuthCheckRequested>(_onCheck);
     on<AuthLoginRequested>(_onLogin);
     on<AuthRegisterRequested>(_onRegister);
@@ -20,7 +20,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthProfileUpdateRequested>(_onProfileUpdate);
   }
 
-  Future<void> _onCheck(AuthCheckRequested event, Emitter<AuthState> emit) async {
+  Future<void> _onCheck(
+    AuthCheckRequested event,
+    Emitter<AuthState> emit,
+  ) async {
     final token = await tokenStorage.getToken();
     if (token == null) {
       emit(AuthUnauthenticated());
@@ -35,7 +38,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _onLogin(AuthLoginRequested event, Emitter<AuthState> emit) async {
+  Future<void> _onLogin(
+    AuthLoginRequested event,
+    Emitter<AuthState> emit,
+  ) async {
     emit(AuthLoading());
     try {
       await repository.login(email: event.email, password: event.password);
@@ -47,7 +53,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _onRegister(AuthRegisterRequested event, Emitter<AuthState> emit) async {
+  Future<void> _onRegister(
+    AuthRegisterRequested event,
+    Emitter<AuthState> emit,
+  ) async {
     emit(AuthLoading());
     try {
       await repository.register(
@@ -64,12 +73,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _onLogout(AuthLogoutRequested event, Emitter<AuthState> emit) async {
+  Future<void> _onLogout(
+    AuthLogoutRequested event,
+    Emitter<AuthState> emit,
+  ) async {
     await repository.logout();
     emit(AuthUnauthenticated());
   }
 
-  Future<void> _onProfileUpdate(AuthProfileUpdateRequested event, Emitter<AuthState> emit) async {
+  Future<void> _onProfileUpdate(
+    AuthProfileUpdateRequested event,
+    Emitter<AuthState> emit,
+  ) async {
     final current = state;
     if (current is AuthAuthenticated) {
       emit(AuthLoading());

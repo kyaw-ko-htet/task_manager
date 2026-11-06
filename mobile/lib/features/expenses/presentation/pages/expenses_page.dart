@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/features/expenses/presentation/bloc/expense_bloc.dart';
+import 'package:mobile/core/theme/app_theme.dart';
 import 'package:mobile/core/utils/formatters.dart';
 
 class ExpensesPage extends StatefulWidget {
@@ -70,8 +71,22 @@ class _ExpensesPageState extends State<ExpensesPage> {
             return const Center(child: CircularProgressIndicator());
           }
           if (state is ExpenseLoaded) {
-            if (state.expenses.isEmpty) return const Center(child: Text('No expenses'));
+            if (state.expenses.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.money_off_outlined, size: 48, color: AppTheme.colorOnSurfaceVariant),
+                    const SizedBox(height: 12),
+                    const Text('No expenses', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                    const SizedBox(height: 4),
+                    Text('Tap + to add an expense', style: TextStyle(fontSize: 14, color: AppTheme.colorOnSurfaceVariant)),
+                  ],
+                ),
+              );
+            }
             return ListView.builder(
+              padding: const EdgeInsets.all(16),
               itemCount: state.expenses.length,
               itemBuilder: (context, i) {
                 final e = state.expenses[i];

@@ -64,7 +64,10 @@ class _ProductFormPageState extends State<ProductFormPage> {
   Widget build(BuildContext context) {
     if (_loading) return const Scaffold(body: Center(child: CircularProgressIndicator()));
     return Scaffold(
-      appBar: AppBar(title: Text(isEdit ? 'Edit Product' : 'New Product')),
+      appBar: AppBar(
+        leading: BackButton(onPressed: () => context.go('/products')),
+        title: Text(isEdit ? 'Edit Product' : 'New Product'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
