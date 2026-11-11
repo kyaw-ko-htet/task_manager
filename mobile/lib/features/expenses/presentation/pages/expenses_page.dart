@@ -30,7 +30,9 @@ class _ExpensesPageState extends State<ExpensesPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(controller: title, decoration: const InputDecoration(labelText: 'Title')),
+            const SizedBox(height: 12),
             TextField(controller: amount, decoration: const InputDecoration(labelText: 'Amount'), keyboardType: TextInputType.number),
+            const SizedBox(height: 12),
             TextField(controller: category, decoration: const InputDecoration(labelText: 'Category')),
           ],
         ),

@@ -22,7 +22,6 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: () => context.go('/login')),
         title: const Text('Register'),
       ),
       body: SingleChildScrollView(
@@ -62,7 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   );
                 },
               ),
-              TextButton(onPressed: () => context.go('/login'), child: const Text('Back to login')),
+              TextButton(onPressed: () { if (context.canPop()) { context.pop(); } else { context.go('/login'); } }, child: const Text('Back to login')),
             ],
           ),
         ),

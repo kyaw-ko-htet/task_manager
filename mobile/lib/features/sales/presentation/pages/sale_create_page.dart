@@ -52,7 +52,11 @@ class _SaleCreatePageState extends State<SaleCreatePage> {
       'notes': _notes.text.trim().isEmpty ? null : _notes.text.trim(),
     };
     context.read<SaleBloc>().add(SaleCreateRequested(data));
-    context.go('/sales');
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go('/sales');
+    }
   }
 
   @override
@@ -60,7 +64,6 @@ class _SaleCreatePageState extends State<SaleCreatePage> {
     if (_loading) return const Scaffold(body: Center(child: CircularProgressIndicator()));
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: () => context.go('/sales')),
         title: const Text('New Sale'),
       ),
       body: ListView(
@@ -100,12 +103,14 @@ class _SaleCreatePageState extends State<SaleCreatePage> {
             ],
             onChanged: (v) => setState(() => _discountType = v!),
           ),
+          const SizedBox(height: 12),
           TextFormField(
             controller: _discountValue,
             decoration: const InputDecoration(labelText: 'Discount Value'),
             keyboardType: TextInputType.number,
             validator: Validators.number,
           ),
+          const SizedBox(height: 12),
           TextFormField(
             controller: _notes,
             decoration: const InputDecoration(labelText: 'Notes (optional)'),

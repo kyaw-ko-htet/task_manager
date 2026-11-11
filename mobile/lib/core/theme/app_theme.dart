@@ -1,44 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   AppTheme._();
 
-  static const Color colorPrimary = Color(0xFF37B6E9);
-  static const Color colorSecondary = Color(0xFF242C3B);
-  static const Color colorBackground = Color(0xFF353F54);
-  static const Color colorSurface = Color(0xFF4B4CED);
+  // ---------------------------------------------------------------------------
+  // Color palette — clean & modern (light theme)
+  // ---------------------------------------------------------------------------
+  static const Color colorPrimary = Color(0xFF6366F1); // Indigo 500
+  static const Color colorSecondary = Color(0xFF22D3EE); // Cyan 400
+  static const Color colorBackground = Color(0xFFF9FAFB); // Gray 50
+  static const Color colorSurface = Color(0xFFFFFFFF); // White
   static const Color colorOnPrimary = Color(0xFFFFFFFF);
-  static const Color colorOnSurface = Color(0xFFFFFFFF);
-  static const Color colorOnSurfaceVariant = Color(0xFFB0BEC5);
-  static const Color colorDisabled = Color(0xFF607D8B);
-  static const Color colorSuccess = Color(0xFF4CAF50);
-  static const Color colorWarning = Color(0xFFFFB300);
-  static const Color colorError = Color(0xFFEF5350);
-  static const Color colorDivider = Color(0x1FFFFFFF); // white @ 12%
-  static const Color colorBorder = Color(0x33FFFFFF); // white @ 20%
+  static const Color colorOnSecondary = Color(0xFF111827);
+  static const Color colorOnSurface = Color(0xFF111827);
+  static const Color colorOnSurfaceVariant = Color(0xFF6B7280);
+  static const Color colorDisabled = Color(0xFF9CA3AF);
+  static const Color colorSuccess = Color(0xFF10B981);
+  static const Color colorWarning = Color(0xFFF59E0B);
+  static const Color colorError = Color(0xFFEF4444);
+  static const Color colorInfo = Color(0xFF6366F1);
+  static const Color colorDivider = Color(0x1F000000); // black @ 12%
+  static const Color colorBorder = Color(0x33000000); // black @ 20%
+  static const Color colorOverlay = Color(0x8A000000); // black @ 54%
 
-  static ThemeData dark() {
+  static ThemeData light() {
     return ThemeData(
       useMaterial3: true,
-      brightness: Brightness.dark,
-      colorScheme: const ColorScheme.dark(
+      brightness: Brightness.light,
+      colorScheme: const ColorScheme.light(
         primary: colorPrimary,
         onPrimary: colorOnPrimary,
         secondary: colorSecondary,
-        onSecondary: colorOnPrimary,
+        onSecondary: colorOnSecondary,
         surface: colorSurface,
         onSurface: colorOnSurface,
         error: colorError,
         onError: colorOnPrimary,
       ),
       scaffoldBackgroundColor: colorBackground,
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: colorPrimary,
         foregroundColor: colorOnPrimary,
         elevation: 0,
         scrolledUnderElevation: 2,
         centerTitle: false,
-        titleTextStyle: TextStyle(
+        titleTextStyle: GoogleFonts.roboto(
           fontSize: 22,
           fontWeight: FontWeight.w400,
           color: colorOnPrimary,
@@ -48,7 +55,7 @@ class AppTheme {
         color: colorSurface,
         elevation: 1,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        margin: const EdgeInsets.symmetric(vertical: 4),
+        margin: const EdgeInsets.symmetric(vertical: 8),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: false,
@@ -67,7 +74,10 @@ class AppTheme {
         ),
         labelStyle: const TextStyle(color: colorOnSurfaceVariant),
         hintStyle: const TextStyle(color: colorOnSurfaceVariant),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -95,7 +105,7 @@ class AppTheme {
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: colorSecondary,
-        foregroundColor: colorOnPrimary,
+        foregroundColor: colorOnSecondary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
@@ -107,21 +117,71 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         behavior: SnackBarBehavior.floating,
       ),
-      progressIndicatorTheme: const ProgressIndicatorThemeData(color: colorPrimary),
-      listTileTheme: const ListTileThemeData(
-        titleTextStyle: TextStyle(fontSize: 16, color: colorOnSurface),
-        subtitleTextStyle: TextStyle(fontSize: 14, color: colorOnSurfaceVariant),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: colorPrimary,
       ),
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(fontSize: 57, fontWeight: FontWeight.w400, height: 1.12, color: colorOnSurface),
-        headlineMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w400, height: 1.29, color: colorOnSurface),
-        titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, height: 1.27, color: colorOnSurface),
-        titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, height: 1.50, color: colorOnSurface),
-        bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, height: 1.50, color: colorOnSurface),
-        bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, height: 1.43, color: colorOnSurface),
-        bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, height: 1.33, color: colorOnSurfaceVariant),
-        labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 1.43, color: colorOnSurface),
-        labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, height: 1.33, color: colorOnSurfaceVariant),
+      listTileTheme: ListTileThemeData(
+        titleTextStyle: GoogleFonts.roboto(fontSize: 16, color: colorOnSurface),
+        subtitleTextStyle: GoogleFonts.roboto(
+          fontSize: 14,
+          color: colorOnSurfaceVariant,
+        ),
+      ),
+      textTheme: TextTheme(
+        displayLarge: GoogleFonts.roboto(
+          fontSize: 57,
+          fontWeight: FontWeight.w400,
+          height: 1.12,
+          color: colorOnSurface,
+        ),
+        headlineMedium: GoogleFonts.roboto(
+          fontSize: 28,
+          fontWeight: FontWeight.w400,
+          height: 1.29,
+          color: colorOnSurface,
+        ),
+        titleLarge: GoogleFonts.roboto(
+          fontSize: 22,
+          fontWeight: FontWeight.w400,
+          height: 1.27,
+          color: colorOnSurface,
+        ),
+        titleMedium: GoogleFonts.roboto(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          height: 1.50,
+          color: colorOnSurface,
+        ),
+        bodyLarge: GoogleFonts.roboto(
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          height: 1.50,
+          color: colorOnSurface,
+        ),
+        bodyMedium: GoogleFonts.roboto(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+          height: 1.43,
+          color: colorOnSurface,
+        ),
+        bodySmall: GoogleFonts.roboto(
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          height: 1.33,
+          color: colorOnSurfaceVariant,
+        ),
+        labelLarge: GoogleFonts.roboto(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          height: 1.43,
+          color: colorOnSurface,
+        ),
+        labelMedium: GoogleFonts.roboto(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          height: 1.33,
+          color: colorOnSurfaceVariant,
+        ),
       ),
     );
   }

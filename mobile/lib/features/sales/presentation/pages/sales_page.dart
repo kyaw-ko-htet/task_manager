@@ -24,7 +24,7 @@ class _SalesPageState extends State<SalesPage> {
     return Scaffold(
       appBar: AppBar(title: const Text('Sales')),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.go('/sales/new'),
+        onPressed: () => context.push('/sales/new'),
         child: const Icon(Icons.add),
       ),
       body: BlocConsumer<SaleBloc, SaleState>(
@@ -64,7 +64,7 @@ class _SalesPageState extends State<SalesPage> {
                   title: Text(Formatters.money(s.total)),
                   subtitle: Text(s.formattedDate),
                   trailing: Text(Formatters.money(s.profit)),
-                  onTap: () => context.go('/sales/${s.id}'),
+                  onTap: () => context.push('/sales/${s.id}'),
                 );
               },
             );

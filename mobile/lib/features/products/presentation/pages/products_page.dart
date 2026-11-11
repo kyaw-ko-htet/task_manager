@@ -24,7 +24,7 @@ class _ProductsPageState extends State<ProductsPage> {
     return Scaffold(
       appBar: AppBar(title: const Text('Products')),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.go('/products/form'),
+        onPressed: () => context.push('/products/form'),
         child: const Icon(Icons.add),
       ),
       body: BlocConsumer<ProductBloc, ProductState>(
@@ -64,7 +64,7 @@ class _ProductsPageState extends State<ProductsPage> {
                   title: Text(p.name),
                   subtitle: Text('SKU: ${p.sku} | Stock: ${p.stockQuantity}'),
                   trailing: Text(Formatters.money(p.sellingPrice)),
-                  onTap: () => context.go('/products/${p.id}'),
+                  onTap: () => context.push('/products/${p.id}'),
                   onLongPress: () => context.read<ProductBloc>().add(ProductDeleteRequested(p.id)),
                 );
               },

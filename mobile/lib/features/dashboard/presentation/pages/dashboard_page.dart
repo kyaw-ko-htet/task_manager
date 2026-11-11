@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile/features/dashboard/presentation/bloc/dashboard_bloc.dart';
-import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/core/utils/formatters.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -25,7 +24,7 @@ class _DashboardPageState extends State<DashboardPage> {
       appBar: AppBar(
         title: const Text('Dashboard'),
         actions: [
-          IconButton(icon: const Icon(Icons.settings), onPressed: () => context.go('/settings')),
+          IconButton(icon: const Icon(Icons.settings), onPressed: () => context.push('/settings')),
         ],
       ),
       body: BlocBuilder<DashboardBloc, DashboardState>(
@@ -51,12 +50,14 @@ class _DashboardPageState extends State<DashboardPage> {
                 Row(
                   children: [
                     _card('Sales', Formatters.money(totalSales)),
+                    const SizedBox(width: 8),
                     _card('Profit', Formatters.money(totalProfit)),
                   ],
                 ),
                 Row(
                   children: [
                     _card('Transactions', '$tx'),
+                    const SizedBox(width: 8),
                     _card('Products Sold', '$sold'),
                   ],
                 ),
@@ -68,15 +69,15 @@ class _DashboardPageState extends State<DashboardPage> {
                       trailing: Text(Formatters.money((r['profit'] as num).toDouble())),
                     )),
                 const SizedBox(height: 16),
-                ElevatedButton(onPressed: () => context.go('/sales/new'), child: const Text('New Sale')),
+                ElevatedButton(onPressed: () => context.push('/sales/new'), child: const Text('New Sale')),
                 const SizedBox(height: 8),
                 Wrap(
                   spacing: 8,
                   children: [
-                    OutlinedButton(onPressed: () => context.go('/products'), child: const Text('Products')),
-                    OutlinedButton(onPressed: () => context.go('/expenses'), child: const Text('Expenses')),
-                    OutlinedButton(onPressed: () => context.go('/reports'), child: const Text('Reports')),
-                    OutlinedButton(onPressed: () => context.read<AuthBloc>().add(AuthLogoutRequested()), child: const Text('Logout')),
+                    OutlinedButton(onPressed: () => context.push('/products'), child: const Text('Products')),
+                    OutlinedButton(onPressed: () => context.push('/expenses'), child: const Text('Expenses')),
+                    OutlinedButton(onPressed: () => context.push('/reports'), child: const Text('Reports')),
+                    
                   ],
                 ),
               ],

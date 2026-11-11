@@ -7,7 +7,7 @@ CREATE TABLE "User" (
     "businessName" TEXT,
     "phone" TEXT,
     "address" TEXT,
-    "currency" TEXT NOT NULL DEFAULT 'USD',
+    "currency" TEXT NOT NULL DEFAULT 'MMK',
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );

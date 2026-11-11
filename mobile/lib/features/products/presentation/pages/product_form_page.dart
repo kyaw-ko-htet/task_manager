@@ -57,7 +57,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
     } else {
       bloc.add(ProductCreateRequested(data));
     }
-    context.go('/products');
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go('/products');
+    }
   }
 
   @override
@@ -65,7 +69,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
     if (_loading) return const Scaffold(body: Center(child: CircularProgressIndicator()));
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: () => context.go('/products')),
         title: Text(isEdit ? 'Edit Product' : 'New Product'),
       ),
       body: Padding(
@@ -75,9 +78,13 @@ class _ProductFormPageState extends State<ProductFormPage> {
           child: ListView(
             children: [
               TextFormField(controller: _name, decoration: const InputDecoration(labelText: 'Name'), validator: Validators.required),
+              const SizedBox(height: 12),
               TextFormField(controller: _sku, decoration: const InputDecoration(labelText: 'SKU'), validator: Validators.required),
+              const SizedBox(height: 12),
               TextFormField(controller: _cost, decoration: const InputDecoration(labelText: 'Cost Price'), keyboardType: TextInputType.number, validator: Validators.number),
+              const SizedBox(height: 12),
               TextFormField(controller: _selling, decoration: const InputDecoration(labelText: 'Selling Price'), keyboardType: TextInputType.number, validator: Validators.number),
+              const SizedBox(height: 12),
               TextFormField(controller: _stock, decoration: const InputDecoration(labelText: 'Stock Quantity'), keyboardType: TextInputType.number, validator: Validators.positiveInt),
               const SizedBox(height: 24),
               ElevatedButton(onPressed: _submit, child: const Text('Save')),

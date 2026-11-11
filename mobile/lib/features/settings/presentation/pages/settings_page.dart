@@ -32,7 +32,6 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: () => context.go('/')),
         title: const Text('Settings'),
       ),
       body: BlocConsumer<AuthBloc, AuthState>(
@@ -49,7 +48,9 @@ class _SettingsPageState extends State<SettingsPage> {
               child: ListView(
                 children: [
                   TextFormField(controller: _name, decoration: const InputDecoration(labelText: 'Name'), validator: Validators.required),
+                  const SizedBox(height: 12),
                   TextFormField(controller: _business, decoration: const InputDecoration(labelText: 'Business Name')),
+                  const SizedBox(height: 12),
                   TextFormField(controller: _currency, decoration: const InputDecoration(labelText: 'Currency')),
                   const SizedBox(height: 24),
                   ElevatedButton(
@@ -66,9 +67,28 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   const SizedBox(height: 24),
                   OutlinedButton(
-                    onPressed: () {
-                      context.read<AuthBloc>().add(AuthLogoutRequested());
-                      context.go('/login');
+                    onPressed: () async {
+                      final confirmed = await showDialog<bool>(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: const Text('Log out'),
+                          content: const Text('Are you sure you want to log out?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.of(ctx).pop(false),
+                              child: const Text('Cancel'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () => Navigator.of(ctx).pop(true),
+                              child: const Text('Log out'),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (confirmed == true && context.mounted) {
+                        context.read<AuthBloc>().add(AuthLogoutRequested());
+                        context.go('/login');
+                      }
                     },
                     child: const Text('Logout'),
                   ),
