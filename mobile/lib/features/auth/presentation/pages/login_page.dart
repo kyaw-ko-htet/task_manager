@@ -23,68 +23,75 @@ class _LoginPageState extends State<LoginPage> {
         onTap: () => FocusScope.of(context).unfocus(),
         child: Center(
           child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Daily Sales', style: Theme.of(context).textTheme.headlineMedium),
-                const SizedBox(height: 24),
-                TextFormField(
-                  controller: _email,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    prefixIcon: Icon(Icons.email_outlined),
+            padding: const EdgeInsets.all(24),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Daily Sales',
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  validator: Validators.email,
-                ),
-                const SizedBox(height: 12),
-                TextFormField(
-                  controller: _password,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock_outlined),
+                  const SizedBox(height: 24),
+                  TextFormField(
+                    controller: _email,
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
+                      prefixIcon: Icon(Icons.email_outlined),
+                    ),
+                    validator: Validators.email,
                   ),
-                  obscureText: true,
-                  validator: Validators.required,
-                ),
-                const SizedBox(height: 24),
-                BlocConsumer<AuthBloc, AuthState>(
-                  listener: (context, state) {
-                    if (state is AuthError) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
-                    }
-                  },
-                  builder: (context, state) {
-                    if (state is AuthLoading) {
-                      return const CircularProgressIndicator();
-                    }
-                    return SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            context.read<AuthBloc>().add(AuthLoginRequested(
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    controller: _password,
+                    decoration: const InputDecoration(
+                      labelText: 'Password',
+                      prefixIcon: Icon(Icons.lock_outlined),
+                    ),
+                    obscureText: true,
+                    validator: Validators.required,
+                  ),
+                  const SizedBox(height: 24),
+                  BlocConsumer<AuthBloc, AuthState>(
+                    listener: (context, state) {
+                      if (state is AuthError) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(state.message)));
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is AuthLoading) {
+                        return const CircularProgressIndicator();
+                      }
+                      return SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              context.read<AuthBloc>().add(
+                                AuthLoginRequested(
                                   email: _email.text.trim(),
                                   password: _password.text,
-                                ));
-                          }
-                        },
-                        child: const Text('Login'),
-                      ),
-                    );
-                  },
-                ),
-                TextButton(
-                  onPressed: () => context.push('/register'),
-                  child: const Text('Create account'),
-                ),
-              ],
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text('Login'),
+                        ),
+                      );
+                    },
+                  ),
+                  TextButton(
+                    onPressed: () => context.push('/register'),
+                    child: const Text('Create account'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }

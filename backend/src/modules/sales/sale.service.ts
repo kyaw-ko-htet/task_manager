@@ -30,6 +30,7 @@ export const saleService = {
       saleDate?: string;
     },
   ) {
+    const discountType = input.discountType;
     return prisma.$transaction(async (tx) => {
       const productIds = input.items.map((i) => i.productId);
       const products = await tx.product.findMany({
@@ -49,7 +50,7 @@ export const saleService = {
         const p = productMap.get(item.productId)!;
         return { quantity: item.quantity, costPrice: p.costPrice, sellingPrice: p.sellingPrice };
       });
-      const calc = calculateSale(calcInput, input.discountType, input.discountValue);
+      const calc = calculateSale(calcInput, discountType, input.discountValue);
 
       const lineItems = input.items.map((item, idx) => {
         const p = productMap.get(item.productId)!;
@@ -76,7 +77,7 @@ export const saleService = {
         data: {
           userId,
           saleDate: input.saleDate ? new Date(input.saleDate) : new Date(),
-          discountType: input.discountType,
+          discountType: discountType,
           discountValue: input.discountValue,
           subtotal: calc.subtotal,
           discountAmount: calc.discountAmount,

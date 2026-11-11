@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:mobile/core/constants/api_constants.dart';
 import 'package:mobile/core/storage/token_storage.dart';
 import 'package:mobile/core/errors/exceptions.dart';
@@ -8,24 +9,39 @@ class DioClient {
   final TokenStorage tokenStorage;
 
   DioClient({required this.tokenStorage})
-      : dio = Dio(BaseOptions(
+    : dio = Dio(
+        BaseOptions(
           baseUrl: ApiConstants.baseUrl,
           connectTimeout: ApiConstants.connectTimeout,
           receiveTimeout: ApiConstants.receiveTimeout,
           headers: {'Content-Type': 'application/json'},
-        )) {
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) async {
-        final token = await tokenStorage.getToken();
-        if (token != null) {
-          options.headers['Authorization'] = 'Bearer $token';
-        }
-        handler.next(options);
-      },
-      onError: (e, handler) {
-        handler.next(e);
-      },
-    ));
+        ),
+      ) {
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final token = await tokenStorage.getToken();
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          handler.next(options);
+        },
+        onError: (e, handler) {
+          handler.next(e);
+        },
+      ),
+    );
+    dio.interceptors.add(
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: false,
+        error: true,
+        compact: true,
+        maxWidth: 90,
+      ),
+    );
   }
 
   dynamic _handle(DioException e) {
@@ -39,7 +55,10 @@ class DioClient {
     throw ServerException(msg, statusCode: e.response?.statusCode);
   }
 
-  Future<Response<dynamic>> get(String path, {Map<String, dynamic>? query}) async {
+  Future<Response<dynamic>> get(
+    String path, {
+    Map<String, dynamic>? query,
+  }) async {
     try {
       return await dio.get(path, queryParameters: query);
     } on DioException catch (e) {

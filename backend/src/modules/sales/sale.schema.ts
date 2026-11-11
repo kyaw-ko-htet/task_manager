@@ -10,8 +10,11 @@ export const createSaleSchema = z.object({
     ).min(1),
     discountType: z.enum(['NONE', 'PERCENT', 'FIXED']).default('NONE'),
     discountValue: z.coerce.number().nonnegative().default(0),
-    notes: z.string().optional(),
+    notes: z.string().nullable().optional(),
     saleDate: z.string().datetime().optional(),
+  }).refine((data) => !(data.discountType === 'NONE' && data.discountValue > 0), {
+    message: 'Select a discount type (Percent or Fixed) when providing a discount value',
+    path: ['discountType'],
   }),
 });
 

@@ -24,7 +24,10 @@ class _DashboardPageState extends State<DashboardPage> {
       appBar: AppBar(
         title: const Text('Dashboard'),
         actions: [
-          IconButton(icon: const Icon(Icons.settings), onPressed: () => context.push('/settings')),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () => context.push('/settings'),
+          ),
         ],
       ),
       body: BlocBuilder<DashboardBloc, DashboardState>(
@@ -40,10 +43,12 @@ class _DashboardPageState extends State<DashboardPage> {
           final totalProfit = (data['totalProfit'] as num).toDouble();
           final tx = data['totalTransactions'] as int;
           final sold = data['totalProductsSold'] as int;
-          final recent = (data['recentSales'] as List).cast<Map<String, dynamic>>();
+          final recent = (data['recentSales'] as List)
+              .cast<Map<String, dynamic>>();
 
           return RefreshIndicator(
-            onRefresh: () async => context.read<DashboardBloc>().add(DashboardLoadRequested()),
+            onRefresh: () async =>
+                context.read<DashboardBloc>().add(DashboardLoadRequested()),
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [
@@ -62,22 +67,47 @@ class _DashboardPageState extends State<DashboardPage> {
                   ],
                 ),
                 const SizedBox(height: 16),
-                const Text('Recent Sales', style: TextStyle(fontWeight: FontWeight.bold)),
-                ...recent.map((r) => ListTile(
-                      title: Text(Formatters.money((r['total'] as num).toDouble())),
-                      subtitle: Text(r['saleDate'].toString()),
-                      trailing: Text(Formatters.money((r['profit'] as num).toDouble())),
-                    )),
+                const Text(
+                  'Recent Sales',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                ...recent.map(
+                  (r) => ListTile(
+                    title: Text(
+                      Formatters.money((r['total'] as num).toDouble()),
+                    ),
+                    // subtitle: Text(r['saleDate'].toString()),
+                    subtitle: Text(
+                      Formatters.dateTime(
+                        DateTime.parse(r['saleDate'].toString()),
+                      ),
+                    ),
+                    trailing: Text(
+                      Formatters.money((r['profit'] as num).toDouble()),
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 16),
-                ElevatedButton(onPressed: () => context.push('/sales/new'), child: const Text('New Sale')),
+                ElevatedButton(
+                  onPressed: () => context.push('/sales/new'),
+                  child: const Text('New Sale'),
+                ),
                 const SizedBox(height: 8),
                 Wrap(
                   spacing: 8,
                   children: [
-                    OutlinedButton(onPressed: () => context.push('/products'), child: const Text('Products')),
-                    OutlinedButton(onPressed: () => context.push('/expenses'), child: const Text('Expenses')),
-                    OutlinedButton(onPressed: () => context.push('/reports'), child: const Text('Reports')),
-                    
+                    OutlinedButton(
+                      onPressed: () => context.push('/products'),
+                      child: const Text('Products'),
+                    ),
+                    OutlinedButton(
+                      onPressed: () => context.push('/expenses'),
+                      child: const Text('Expenses'),
+                    ),
+                    OutlinedButton(
+                      onPressed: () => context.push('/reports'),
+                      child: const Text('Reports'),
+                    ),
                   ],
                 ),
               ],
@@ -97,7 +127,13 @@ class _DashboardPageState extends State<DashboardPage> {
             children: [
               Text(title, style: const TextStyle(fontSize: 12)),
               const SizedBox(height: 4),
-              Text(value, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(
+                value,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ],
           ),
         ),
