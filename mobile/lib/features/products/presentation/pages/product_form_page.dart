@@ -71,7 +71,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
       appBar: AppBar(
         title: Text(isEdit ? 'Edit Product' : 'New Product'),
       ),
-      body: Padding(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
@@ -91,6 +93,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
             ],
           ),
         ),
+      ),
       ),
     );
   }

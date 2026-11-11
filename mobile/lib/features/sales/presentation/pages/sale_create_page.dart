@@ -66,7 +66,9 @@ class _SaleCreatePageState extends State<SaleCreatePage> {
       appBar: AppBar(
         title: const Text('New Sale'),
       ),
-      body: ListView(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           ..._products.map((p) {
@@ -118,6 +120,7 @@ class _SaleCreatePageState extends State<SaleCreatePage> {
           const SizedBox(height: 24),
           ElevatedButton(onPressed: _submit, child: const Text('Record Sale')),
         ],
+      ),
       ),
     );
   }

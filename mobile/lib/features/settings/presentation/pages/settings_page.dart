@@ -34,7 +34,9 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: const Text('Settings'),
       ),
-      body: BlocConsumer<AuthBloc, AuthState>(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
@@ -97,6 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           );
         },
+      ),
       ),
     );
   }
