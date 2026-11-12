@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:mobile/features/auth/domain/entities/user.dart';
-import 'package:mobile/features/auth/domain/repositories/auth_repository.dart';
-import 'package:mobile/core/storage/token_storage.dart';
+import 'package:my_pocky/features/auth/domain/entities/user.dart';
+import 'package:my_pocky/features/auth/domain/repositories/auth_repository.dart';
+import 'package:my_pocky/core/storage/token_storage.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -87,7 +87,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     final current = state;
     if (current is AuthAuthenticated) {
-      emit(AuthLoading());
+      emit(AuthAuthenticated(current.user, isUpdating: true));
       try {
         final user = await repository.updateProfile(event.data);
         emit(AuthAuthenticated(user));

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:mobile/core/di/injection.dart';
-import 'package:mobile/core/router/app_router.dart';
-import 'package:mobile/core/theme/app_theme.dart';
+import 'package:my_pocky/core/di/injection.dart';
+import 'package:my_pocky/core/router/app_router.dart';
+import 'package:my_pocky/core/theme/app_theme.dart';
 
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
 
-import 'package:mobile/core/storage/token_storage.dart';
+import 'package:my_pocky/core/storage/token_storage.dart';
 
 import 'features/products/presentation/bloc/product_bloc.dart';
 import 'features/products/domain/repositories/product_repository.dart';

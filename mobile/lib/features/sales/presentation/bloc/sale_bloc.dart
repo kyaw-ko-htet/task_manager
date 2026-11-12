@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/features/sales/domain/repositories/sale_repository.dart';
-import 'package:mobile/features/sales/domain/entities/sale.dart';
+import 'package:my_pocky/features/sales/domain/repositories/sale_repository.dart';
+import 'package:my_pocky/features/sales/domain/entities/sale.dart';
 
 part 'sale_event.dart';
 part 'sale_state.dart';

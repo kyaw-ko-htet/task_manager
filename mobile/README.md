@@ -1,5 +1,4 @@
-# mobile
-
+# my_pocky
 A new Flutter project.
 
 ## Getting Started

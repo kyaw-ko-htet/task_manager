@@ -1,4 +1,4 @@
-import 'package:mobile/features/sales/domain/entities/sale.dart';
+import 'package:my_pocky/features/sales/domain/entities/sale.dart';
 
 abstract class SaleRepository {
   Future<List<Sale>> getSales({String? from, String? to});

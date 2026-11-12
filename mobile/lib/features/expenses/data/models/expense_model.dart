@@ -1,4 +1,4 @@
-import 'package:mobile/features/expenses/domain/entities/expense.dart';
+import 'package:my_pocky/features/expenses/domain/entities/expense.dart';
 
 class ExpenseModel extends Expense {
   const ExpenseModel({

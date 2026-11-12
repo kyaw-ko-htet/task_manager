@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/features/reports/presentation/bloc/report_bloc.dart';
-import 'package:mobile/core/utils/formatters.dart';
+import 'package:my_pocky/features/reports/presentation/bloc/report_bloc.dart';
+import 'package:my_pocky/core/utils/formatters.dart';
 
 class ReportsPage extends StatefulWidget {
   const ReportsPage({super.key});

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile/core/di/injection.dart';
-import 'package:mobile/features/products/presentation/bloc/product_bloc.dart';
-import 'package:mobile/features/products/domain/repositories/product_repository.dart';
-import 'package:mobile/core/utils/validators.dart';
+import 'package:my_pocky/core/di/injection.dart';
+import 'package:my_pocky/features/products/presentation/bloc/product_bloc.dart';
+import 'package:my_pocky/features/products/domain/repositories/product_repository.dart';
+import 'package:my_pocky/core/utils/validators.dart';
 
 class ProductFormPage extends StatefulWidget {
   final String? id;

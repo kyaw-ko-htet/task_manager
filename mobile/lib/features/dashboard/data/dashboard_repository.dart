@@ -1,6 +1,6 @@
-import 'package:mobile/core/network/dio_client.dart';
-import 'package:mobile/core/network/api_endpoints.dart';
-import 'package:mobile/core/errors/exceptions.dart';
+import 'package:my_pocky/core/network/dio_client.dart';
+import 'package:my_pocky/core/network/api_endpoints.dart';
+import 'package:my_pocky/core/errors/exceptions.dart';
 
 class DashboardRepository {
   final DioClient dioClient;

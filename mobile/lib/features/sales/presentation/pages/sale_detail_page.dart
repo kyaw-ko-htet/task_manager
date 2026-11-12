@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/features/sales/presentation/bloc/sale_bloc.dart';
-import 'package:mobile/core/utils/formatters.dart';
+import 'package:my_pocky/features/sales/presentation/bloc/sale_bloc.dart';
+import 'package:my_pocky/core/utils/formatters.dart';
 
 class SaleDetailPage extends StatefulWidget {
   final String id;

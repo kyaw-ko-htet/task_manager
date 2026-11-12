@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:mobile/features/auth/presentation/pages/login_page.dart';
-import 'package:mobile/features/auth/presentation/pages/register_page.dart';
-import 'package:mobile/features/dashboard/presentation/pages/dashboard_page.dart';
-import 'package:mobile/features/products/presentation/pages/products_page.dart';
-import 'package:mobile/features/products/presentation/pages/product_form_page.dart';
-import 'package:mobile/features/sales/presentation/pages/sales_page.dart';
-import 'package:mobile/features/sales/presentation/pages/sale_create_page.dart';
-import 'package:mobile/features/sales/presentation/pages/sale_detail_page.dart';
-import 'package:mobile/features/expenses/presentation/pages/expenses_page.dart';
-import 'package:mobile/features/reports/presentation/pages/reports_page.dart';
-import 'package:mobile/features/settings/presentation/pages/settings_page.dart';
+import 'package:my_pocky/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:my_pocky/features/auth/presentation/pages/login_page.dart';
+import 'package:my_pocky/features/auth/presentation/pages/register_page.dart';
+import 'package:my_pocky/features/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:my_pocky/features/products/presentation/pages/products_page.dart';
+import 'package:my_pocky/features/products/presentation/pages/product_form_page.dart';
+import 'package:my_pocky/features/sales/presentation/pages/sales_page.dart';
+import 'package:my_pocky/features/sales/presentation/pages/sale_create_page.dart';
+import 'package:my_pocky/features/sales/presentation/pages/sale_detail_page.dart';
+import 'package:my_pocky/features/expenses/presentation/pages/expenses_page.dart';
+import 'package:my_pocky/features/reports/presentation/pages/reports_page.dart';
+import 'package:my_pocky/features/settings/presentation/pages/settings_page.dart';
 
 GoRouter createRouter(ValueNotifier<AuthState> authNotifier) {
   return GoRouter(

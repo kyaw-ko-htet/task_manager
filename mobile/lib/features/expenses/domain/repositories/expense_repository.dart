@@ -1,4 +1,4 @@
-import 'package:mobile/features/expenses/domain/entities/expense.dart';
+import 'package:my_pocky/features/expenses/domain/entities/expense.dart';
 
 abstract class ExpenseRepository {
   Future<List<Expense>> getExpenses({String? from, String? to, String? category});

@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:mobile/core/constants/app_constants.dart';
+import 'package:my_pocky/core/constants/app_constants.dart';
 
 class TokenStorage {
   Future<void> saveToken(String token) async {

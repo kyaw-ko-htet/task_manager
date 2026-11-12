@@ -1,9 +1,9 @@
-import 'package:mobile/core/network/dio_client.dart';
-import 'package:mobile/core/network/api_endpoints.dart';
-import 'package:mobile/core/errors/exceptions.dart';
-import 'package:mobile/features/expenses/domain/repositories/expense_repository.dart';
-import 'package:mobile/features/expenses/domain/entities/expense.dart';
-import 'package:mobile/features/expenses/data/models/expense_model.dart';
+import 'package:my_pocky/core/network/dio_client.dart';
+import 'package:my_pocky/core/network/api_endpoints.dart';
+import 'package:my_pocky/core/errors/exceptions.dart';
+import 'package:my_pocky/features/expenses/domain/repositories/expense_repository.dart';
+import 'package:my_pocky/features/expenses/domain/entities/expense.dart';
+import 'package:my_pocky/features/expenses/data/models/expense_model.dart';
 
 class ExpenseRepositoryImpl implements ExpenseRepository {
   final DioClient dioClient;

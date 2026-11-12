@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile/features/dashboard/presentation/bloc/dashboard_bloc.dart';
-import 'package:mobile/core/utils/formatters.dart';
+import 'package:my_pocky/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:my_pocky/core/utils/formatters.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

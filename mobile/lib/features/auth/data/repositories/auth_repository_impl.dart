@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:mobile/core/network/dio_client.dart';
-import 'package:mobile/core/network/api_endpoints.dart';
-import 'package:mobile/core/storage/token_storage.dart';
-import 'package:mobile/core/errors/exceptions.dart';
-import 'package:mobile/features/auth/domain/repositories/auth_repository.dart';
-import 'package:mobile/features/auth/domain/entities/user.dart';
-import 'package:mobile/features/auth/data/models/user_model.dart';
+import 'package:my_pocky/core/network/dio_client.dart';
+import 'package:my_pocky/core/network/api_endpoints.dart';
+import 'package:my_pocky/core/storage/token_storage.dart';
+import 'package:my_pocky/core/errors/exceptions.dart';
+import 'package:my_pocky/features/auth/domain/repositories/auth_repository.dart';
+import 'package:my_pocky/features/auth/domain/entities/user.dart';
+import 'package:my_pocky/features/auth/data/models/user_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final DioClient dioClient;

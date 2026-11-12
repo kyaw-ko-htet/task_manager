@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:mobile/core/utils/validators.dart';
+import 'package:my_pocky/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:my_pocky/core/utils/validators.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

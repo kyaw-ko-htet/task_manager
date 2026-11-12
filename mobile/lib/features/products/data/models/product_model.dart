@@ -1,4 +1,4 @@
-import 'package:mobile/features/products/domain/entities/product.dart';
+import 'package:my_pocky/features/products/domain/entities/product.dart';
 
 class ProductModel extends Product {
   const ProductModel({

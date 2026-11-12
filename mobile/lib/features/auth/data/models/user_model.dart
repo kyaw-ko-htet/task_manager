@@ -1,4 +1,4 @@
-import 'package:mobile/features/auth/domain/entities/user.dart';
+import 'package:my_pocky/features/auth/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({

@@ -1,17 +1,17 @@
 import 'package:get_it/get_it.dart';
-import 'package:mobile/core/storage/token_storage.dart';
-import 'package:mobile/core/network/dio_client.dart';
+import 'package:my_pocky/core/storage/token_storage.dart';
+import 'package:my_pocky/core/network/dio_client.dart';
 
-import 'package:mobile/features/auth/data/repositories/auth_repository_impl.dart';
-import 'package:mobile/features/auth/domain/repositories/auth_repository.dart';
-import 'package:mobile/features/products/data/repositories/product_repository_impl.dart';
-import 'package:mobile/features/products/domain/repositories/product_repository.dart';
-import 'package:mobile/features/sales/data/repositories/sale_repository_impl.dart';
-import 'package:mobile/features/sales/domain/repositories/sale_repository.dart';
-import 'package:mobile/features/expenses/data/repositories/expense_repository_impl.dart';
-import 'package:mobile/features/expenses/domain/repositories/expense_repository.dart';
-import 'package:mobile/features/dashboard/data/dashboard_repository.dart';
-import 'package:mobile/features/reports/data/report_repository.dart';
+import 'package:my_pocky/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:my_pocky/features/auth/domain/repositories/auth_repository.dart';
+import 'package:my_pocky/features/products/data/repositories/product_repository_impl.dart';
+import 'package:my_pocky/features/products/domain/repositories/product_repository.dart';
+import 'package:my_pocky/features/sales/data/repositories/sale_repository_impl.dart';
+import 'package:my_pocky/features/sales/domain/repositories/sale_repository.dart';
+import 'package:my_pocky/features/expenses/data/repositories/expense_repository_impl.dart';
+import 'package:my_pocky/features/expenses/domain/repositories/expense_repository.dart';
+import 'package:my_pocky/features/dashboard/data/dashboard_repository.dart';
+import 'package:my_pocky/features/reports/data/report_repository.dart';
 
 final sl = GetIt.instance;
 

@@ -8,7 +8,8 @@ class AuthLoading extends AuthState {}
 
 class AuthAuthenticated extends AuthState {
   final User user;
-  AuthAuthenticated(this.user);
+  final bool isUpdating;
+  AuthAuthenticated(this.user, {this.isUpdating = false});
 }
 
 class AuthUnauthenticated extends AuthState {}

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile/features/products/presentation/bloc/product_bloc.dart';
-import 'package:mobile/core/theme/app_theme.dart';
-import 'package:mobile/core/utils/formatters.dart';
+import 'package:my_pocky/features/products/presentation/bloc/product_bloc.dart';
+import 'package:my_pocky/core/theme/app_theme.dart';
+import 'package:my_pocky/core/utils/formatters.dart';
 
 class ProductsPage extends StatefulWidget {
   const ProductsPage({super.key});

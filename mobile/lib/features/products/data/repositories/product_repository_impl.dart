@@ -1,9 +1,9 @@
-import 'package:mobile/core/network/dio_client.dart';
-import 'package:mobile/core/network/api_endpoints.dart';
-import 'package:mobile/core/errors/exceptions.dart';
-import 'package:mobile/features/products/domain/repositories/product_repository.dart';
-import 'package:mobile/features/products/domain/entities/product.dart';
-import 'package:mobile/features/products/data/models/product_model.dart';
+import 'package:my_pocky/core/network/dio_client.dart';
+import 'package:my_pocky/core/network/api_endpoints.dart';
+import 'package:my_pocky/core/errors/exceptions.dart';
+import 'package:my_pocky/features/products/domain/repositories/product_repository.dart';
+import 'package:my_pocky/features/products/domain/entities/product.dart';
+import 'package:my_pocky/features/products/data/models/product_model.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
   final DioClient dioClient;

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/features/expenses/domain/repositories/expense_repository.dart';
-import 'package:mobile/features/expenses/domain/entities/expense.dart';
+import 'package:my_pocky/features/expenses/domain/repositories/expense_repository.dart';
+import 'package:my_pocky/features/expenses/domain/entities/expense.dart';
 
 part 'expense_event.dart';
 part 'expense_state.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/features/expenses/presentation/bloc/expense_bloc.dart';
-import 'package:mobile/core/theme/app_theme.dart';
-import 'package:mobile/core/utils/formatters.dart';
+import 'package:my_pocky/features/expenses/presentation/bloc/expense_bloc.dart';
+import 'package:my_pocky/core/theme/app_theme.dart';
+import 'package:my_pocky/core/utils/formatters.dart';
 
 class ExpensesPage extends StatefulWidget {
   const ExpensesPage({super.key});

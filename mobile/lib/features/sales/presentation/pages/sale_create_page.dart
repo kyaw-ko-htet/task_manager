@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile/features/products/domain/entities/product.dart';
-import 'package:mobile/features/products/domain/repositories/product_repository.dart';
-import 'package:mobile/core/di/injection.dart';
-import 'package:mobile/features/sales/presentation/bloc/sale_bloc.dart';
-import 'package:mobile/core/utils/validators.dart';
-import 'package:mobile/core/theme/app_theme.dart';
+import 'package:my_pocky/features/products/domain/entities/product.dart';
+import 'package:my_pocky/features/products/domain/repositories/product_repository.dart';
+import 'package:my_pocky/core/di/injection.dart';
+import 'package:my_pocky/features/sales/presentation/bloc/sale_bloc.dart';
+import 'package:my_pocky/core/utils/validators.dart';
+import 'package:my_pocky/core/theme/app_theme.dart';
 
 class SaleCreatePage extends StatefulWidget {
   const SaleCreatePage({super.key});

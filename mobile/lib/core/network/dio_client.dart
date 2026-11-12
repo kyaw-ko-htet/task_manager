@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:mobile/core/constants/api_constants.dart';
-import 'package:mobile/core/storage/token_storage.dart';
-import 'package:mobile/core/errors/exceptions.dart';
+import 'package:my_pocky/core/constants/api_constants.dart';
+import 'package:my_pocky/core/storage/token_storage.dart';
+import 'package:my_pocky/core/errors/exceptions.dart';
 
 class DioClient {
   final Dio dio;

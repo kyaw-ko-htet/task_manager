@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/features/reports/data/report_repository.dart';
+import 'package:my_pocky/features/reports/data/report_repository.dart';
 
 part 'report_event.dart';
 part 'report_state.dart';
